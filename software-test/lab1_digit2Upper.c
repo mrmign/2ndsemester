@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 /* input a digit between 0 ~ 9999, then convert it to chinese uppercase.*/
 
 int digits[4];
@@ -11,25 +11,36 @@ void process(int num);
 int main(int argc, char const *argv[])
 {
     int num;
+    char in[100]="\0";
     while(1)
     {
-        printf("Please input a interger between 0~9999:\n");
-        int ret = scanf("%d", &num);
-        if (ret == 1)
+        scanf("%s",in);
+        if(strlen(in) > 4)
         {
-            if(num < 0)
-            break;
-            memset(digits,0,4);
-            has_zero = 0;
-            process(num);
-        }
-        else
-        {
-            printf("Number Error!! \n");
+            printf("%s\n", in);
             continue;
         }
-        
-
+        int i = 0, j = strlen(in);
+        int flag=0;
+        while(i < j)
+        {
+            if (!isdigit(in[i++]))
+            {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag)
+        {
+            printf("%s\n", in);
+            continue;
+        }
+        num = atoi(in);
+        if(num < 0)
+            break;
+        memset(digits,0,4);
+        has_zero = 0;
+        process(num);
     }
     return 0;
 }
