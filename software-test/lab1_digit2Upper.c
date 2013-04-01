@@ -14,7 +14,8 @@ int main(int argc, char const *argv[])
     char in[100]="\0";
     while(1)
     {
-        scanf("%s",in);
+        // scanf("%s",in);
+        gets(in);
         if(strlen(in) > 4)
         {
             printf("%s\n", in);
@@ -36,8 +37,8 @@ int main(int argc, char const *argv[])
             continue;
         }
         num = atoi(in);
-        if(num < 0)
-            break;
+        // if(num < 0)
+        //     break;
         memset(digits,0,4);
         has_zero = 0;
         process(num);
